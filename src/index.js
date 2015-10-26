@@ -11,6 +11,35 @@ class Superserver extends Server{
     this.on('request',this.handleRequest)
   }
 
+  acam= [
+    'CHECKOUT',
+    'CONNECT',
+    'COPY',
+    'DELETE',
+    'GET',
+    'HEAD',
+    'LOCK',
+    'MERGE',
+    'MKACTIVITY',
+    'MKCOL',
+    'MOVE',
+    'M-SEARCH',
+    'NOTIFY',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PROPFIND',
+    'PROPPATCH',
+    'PURGE',
+    'PUT',
+    'REPORT',
+    'SEARCH',
+    'SUBSCRIBE',
+    'TRACE',
+    'UNLOCK',
+    'UNSUBSCRIBE',
+  ]
+
   handleRequest= (req,res)=>{
     let body= ''
 
@@ -40,10 +69,19 @@ class Superserver extends Server{
 
       res.statusCode= 200
       res.statusMessage= 'OK'
+
       res.setHeader('content-type','application/json')
       res.setHeader('access-control-allow-origin','*')
-      res.setHeader('access-control-allow-methods',req.method)
-      res.setHeader('access-control-allow-headers',Object.keys(req.headers).join(','))
+      res.setHeader('access-control-allow-methods',this.acam.join(','))
+
+      let allowHeader= ''
+      allowHeader+= req.headers['access-control-request-headers'] || ''
+      if(allowHeader){
+        allowHeader+= ', '
+      }
+      allowHeader+= Object.keys(req.headers).join(', ')
+      res.setHeader('access-control-allow-headers',allowHeader)
+
       res.end(stringify(req,null,2))
     })
   }

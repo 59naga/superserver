@@ -33,13 +33,18 @@ describe('superserver',function(){
           if(error){
             return reject(error)
           }
+
+          let allowHeader= ''
+          allowHeader+= response.body.headers['access-control-request-headers'] || ''
+          if(allowHeader){
+            allowHeader+= ', '
+          }
+          allowHeader+= Object.keys(response.body.headers).join(', ')
+
           equal(response.headers['content-type'],'application/json')
           equal(response.headers['access-control-allow-origin'],'*')
-          equal(response.headers['access-control-allow-methods'],verb)
-          equal(
-            response.headers['access-control-allow-headers'],
-            Object.keys(response.body.headers).join(',')
-          )
+          equal(response.headers['access-control-allow-methods'],superserver.acam.join(','))
+          equal(response.headers['access-control-allow-headers'],allowHeader)
 
           let request= response.body
 
