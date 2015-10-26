@@ -15,7 +15,7 @@
     
     "test": "babel-node node_modules/.bin/isparta cover --report text --report html node_modules/.bin/_mocha",
     "posttest": "eslint src test",
-    "report": "cat coverage/lcov.info | codeclimate",
+    "report": "codeclimate-test-reporter < coverage/lcov.info",
 
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "babel src --out-dir lib"
