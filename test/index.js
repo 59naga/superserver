@@ -35,8 +35,11 @@ describe('superserver',function(){
           }
           equal(response.headers['content-type'],'application/json')
           equal(response.headers['access-control-allow-origin'],'*')
-          equal(response.headers['access-control-allow-methods'],superserver.ACAM.join(','))
-          equal(response.headers['access-control-allow-headers'],'Content-Type')
+          equal(response.headers['access-control-allow-methods'],verb)
+          equal(
+            response.headers['access-control-allow-headers'],
+            Object.keys(response.body.headers).join(',')
+          )
 
           let request= response.body
 
