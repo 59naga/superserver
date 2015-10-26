@@ -64,6 +64,7 @@ class Superserver extends Server{
       res.setHeader('content-type','application/json')
       res.setHeader('access-control-allow-origin','*')
       res.setHeader('access-control-allow-methods',this.ACAM.join(','))
+      res.setHeader('access-control-allow-headers','Content-Type')
       res.end(stringify(req,null,2))
     })
   }
