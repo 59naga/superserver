@@ -11,6 +11,27 @@ class Superserver extends Server{
     this.on('request',this.handleRequest)
   }
 
+  ACAM= [
+    'CHECKOUT',
+    'CONNECT',
+    'COPY',
+    'DELETE',
+    'GET',
+    'HEAD',
+    'LOCK',
+    'MERGE',
+    'MKACTIVITY',
+    'MKCOL',
+    'MOVE',
+    'M-SEARCH',
+    'NOTIFY',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PROPFIND',
+    'PROPPATCH',
+  ]
+
   handleRequest= (req,res)=>{
     let body= ''
 
@@ -42,6 +63,7 @@ class Superserver extends Server{
       res.statusMessage= 'OK'
       res.setHeader('content-type','application/json')
       res.setHeader('access-control-allow-origin','*')
+      res.setHeader('access-control-allow-methods',this.ACAM.join(','))
       res.end(stringify(req,null,2))
     })
   }
