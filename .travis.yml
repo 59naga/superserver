@@ -1,0 +1,32 @@
+# Quick boot options
+sudo: false
+cache:
+  directories:
+    - node_modules
+
+# Ignore version tags
+branches:
+  except:
+    - /^v[0-9]/
+
+# Language options
+language: node_js
+node_js:
+  - '0.12'
+
+# Coverage report
+after_success:
+  - npm run report
+env:
+  global:
+    # CODECLIMATE_REPO_TOKEN
+    - secure: dCM8gxTbf6ABsWIDidoFVrY5OvxdcMENee+amMP040fQy98NkUyw4ZUacgMCvQVYSFMJfQomcG/F9e/E6E5wNuRhZR+LdS4dw4DV3Rx+kjyvT1eJHPJvCiEnwlVlEHpIFk3cHispsPD2dmRGSRmORyOrpTzdu1ahfsWc/YnhM21zvcbUE3e7SkjM1QFiPeXkNuTdQsGufDH4eTXfMQsf4nf2AZE+Z045YCMvrY/qqq0PKmJOckP26ffVx0UV9jI28lvIg6o5C3ibrkPbY7LoN0dbbjYYXaPyyUtwIxL+M0INDtjMMqSZK19rmmsjpgBDURwLo2YK4JtAwKkzKWU4BVBhATUx5IZ3FaSxpks+++pXbbjrF6a+tmfKt8zinID2WqkykZpPHj0GB2HYnRQ9axhnL8F3EqpiGDzOZe3OZbrL2xXBCzL//hoQ/Q1KBe9SONOcKiD3kKP6l83ma5dvUZ8Ozimc9zCgaWwD8DvI7o/q/B/OBdPr1xifSuuWv2U+bjyZDJpFdhrxkVrBoyK+1Hsn3aFywumv6YWBDzmrzsS3b55Yc3g/f1QPf0PA+q+KmPKYUSl25pwvwkcg7mzk7CQO1RwrrBmyJaDrJDWjmE4KuM0/qxK7Z1b/4Bv/kiq9CwrIUewmuVbV0sqQiWFGcFdl/7ga/1ut7V1DkdWvAuc=
+
+# Npm publish options
+before_deploy:
+  - npm install babel --global
+deploy:
+  provider: npm
+  email: i59naga@icloud.com
+  api_key:
+    secure: niLglGIdnwbG9CoLMKQrXHbZ6uePQ8/B8Y4SVKfBQwvMP7Xu2G9MIWh8pL1HMS1etM+MBVTR09HoA1UJWnroSS18T5o6mR3Y/lCTKFWvze+Bt+Gd+1KlYCeJb8gZ3l1oEjwi8si9/MqqI4P0b7s9l9C4EYmqWJJwI7b/gQRMN6nUL84E/066rY11nuAbEBJmAYrIqxPuBzvGGfAHe9ZXp27q0IsJxqr0oQPhnuIZXd/cu1NIH0tm5VqCU3gQ28owat9pShi+ds1OpRscOP+qOgHTqnR+VpRBKwLyIqLy2RqpnBSXTgRtZyb1M/oVnCS4LdczRfv+A4x4fTCCjvHZGJ6iwr8JUsy2AQlK99hef+MblhaiVldNNGJrmWUKqW40Eq+BWb+K7R7348HT0SoJpI8LXadCiy5pypNU4aTE3bjEx74E3L9RIEkPYlyG+xrnpwd42+OzKCogp16m4R2WZp7tOzZATZw4rQhMYJHSGecWGzRDxgNywvMJC4UiFa0eyeGWOYBlOzJFO3817FwPCav/Mi+chMmSjKE1Mw/c41iyGO6GECTp3fWrRjpd6qSzH08kf2fGnkdaeg4HuXbi7JWYTZo70YMZo5Y8T9XEvrXRSiKmJlGwVcrbGqzwZ/wk1JklrhC6P9FWIay8RSTv7ofPOE/jNVxCIfeUSoosHd4=
