@@ -2,6 +2,8 @@
 
 > a dummy REST server for testing HTTP client
 
+[DEMO](http://superserver.berabou.me/)
+
 ## Installation
 
 ```bash
