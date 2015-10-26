@@ -26,7 +26,7 @@ class Superserver extends Server{
       req.originalUrl= `http://${req.headers.host}${req.url}`
 
       try{
-        req.query= querystring.parse(req.url.slice(2))
+        req.query= querystring.parse(req.url.split('?')[1] || '')
       }
       catch(error){}
 

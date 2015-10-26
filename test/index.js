@@ -24,7 +24,7 @@ describe('superserver',function(){
 
     let promises= verbs.map(verb=>{
       let promise= new Promise((resolve,reject)=>{
-        let url= `http://localhost:${process.env.PORT}/?foo=bar`
+        let url= `http://localhost:${process.env.PORT}/hoge?foo=bar`
 
         superagent(verb,url)
         .set('foo','bar')
@@ -40,7 +40,7 @@ describe('superserver',function(){
 
           // FIXME: doesn't retain url eg. '/?foo=bar&baz&beep' => '/?foo=bar&baz=&beep='
           equal(request.originalUrl,url)
-          equal(request.url,'/?foo=bar')
+          equal(request.url,'/hoge?foo=bar')
           equal(request.query.foo,'bar')
 
           equal(request.method,verb)
