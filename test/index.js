@@ -33,6 +33,9 @@ describe('superserver',function(){
           if(error){
             return reject(error)
           }
+          equal(response.headers['content-type'],'application/json')
+          equal(response.headers['access-control-allow-origin'],'*')
+
           let request= response.body
 
           // FIXME: doesn't retain url eg. '/?foo=bar&baz&beep' => '/?foo=bar&baz=&beep='

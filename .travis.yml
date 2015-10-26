@@ -16,7 +16,8 @@ node_js:
 
 # Coverage report
 after_success:
-  - npm run report
+  - npm install codeclimate-test-reporter --global
+  - codeclimate-test-reporter < coverage/lcov.info
 env:
   global:
     # CODECLIMATE_REPO_TOKEN

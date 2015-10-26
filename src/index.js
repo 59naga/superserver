@@ -38,7 +38,10 @@ class Superserver extends Server{
         catch(error){}
       }
 
-      res.writeHead(200,{'Content-Type':'application/json'})
+      res.statusCode= 200
+      res.statusMessage= 'OK'
+      res.setHeader('content-type','application/json')
+      res.setHeader('access-control-allow-origin','*')
       res.end(stringify(req,null,2))
     })
   }
